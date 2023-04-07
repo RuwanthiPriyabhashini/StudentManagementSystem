@@ -182,8 +182,18 @@ public class Login extends javax.swing.JFrame {
                 ResultSet isExist = prepareStatement.executeQuery();
                 
                 if(isExist.next()){
-                Parent parent = 
+                Main m = new Main();
+                this.hide();
+                m.setVisible(true);
+                        
                 }
+                else{
+                JOptionPane.showMessageDialog(this, "User Name and Password Not Matched!");
+                }
+                
+                txtUserName.setText("");
+                txtPassword.setText("");
+                txtUserName.requestFocus();
                 
                 
             } catch (SQLException ex) {
