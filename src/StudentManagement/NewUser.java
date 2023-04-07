@@ -4,15 +4,17 @@
  */
 package StudentManagement;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
+/***
  * @author DOWNLOAD
  */
 public class NewUser extends javax.swing.JFrame {
@@ -22,6 +24,9 @@ public class NewUser extends javax.swing.JFrame {
      */
     public NewUser() {
         initComponents();
+        
+        btnAdd.setBackground(Color.GREEN);
+        btnCancle.setBackground(Color.red);
     }
 
     /**
@@ -46,16 +51,28 @@ public class NewUser extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("User Name");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Password");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Confirm Password");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("User Type");
+
+        txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         txtUserType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Admin" }));
 
+        txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txtConfirmPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +80,8 @@ public class NewUser extends javax.swing.JFrame {
             }
         });
 
+        btnCancle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnCancle.setForeground(new java.awt.Color(255, 255, 255));
         btnCancle.setText("Cancle");
         btnCancle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,9 +104,11 @@ public class NewUser extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(77, 77, 77)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))))
+                                .addComponent(jLabel4))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)))
                         .addGap(82, 82, 82)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,7 +149,10 @@ public class NewUser extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    
 
     private void btnCancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancleActionPerformed
         // TODO add your handling code here:
@@ -151,66 +175,42 @@ public class NewUser extends javax.swing.JFrame {
         }
         
         else{
+            Connection connection = DBConnection.getInstance().getConnection();
             
             try {
-
-                String userName = txtUserName.getText();
-                String password = txtPassword.getText();
-                String userType = txtUserType.getSelectedItem().toString();
+                PreparedStatement prepareStatement = connection.prepareStatement("insert into user(username,password,utype) values(?,?,?)");
                 
-                Connection connection = DBConnection.getInstance().getConnection();
+                prepareStatement.setObject(1,txtUserName.getText());
+                prepareStatement.setObject(2,txtPassword.getText());
+                prepareStatement.setObject(3, txtUserType.getSelectedItem());
                 
-                PreparedStatement prepareStatement = null;
-                try {
-                    prepareStatement = connection.prepareStatement("insert into user values(?,?,?,?)");
-                } catch (SQLException ex) {
-                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                
+                int i = prepareStatement.executeUpdate();
+                if(i != 0){
+                JOptionPane.showMessageDialog(this, "User Added....");
                 }
-                
-                prepareStatement.setObject(1,"003");
-                try {
-                    prepareStatement.setObject(2, userName);
-                } catch (SQLException ex) {
-                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                else{
+                JOptionPane.showMessageDialog(this, "Something wrong!");
                 }
-                try {
-                    prepareStatement.setObject(3,password);
-                } catch (SQLException ex) {
-                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                try {
-                    prepareStatement.setObject(4, userType);
-                } catch (SQLException ex) {
-                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                prepareStatement.executeUpdate();
-                JOptionPane.showMessageDialog(null, "User Created......");
-                
-                txtUserName.setText("");
-                txtPassword.setText("");
-                txtConfirmPassword.setText("");
-                txtUserType.setSelectedIndex(-1);
-                
-                txtUserName.requestFocus();
-                
-                
-                
-                
-                
-                
                 
             } catch (SQLException ex) {
                 Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
             }
             
+            txtUserName.setText("");
+            txtPassword.setText("");
+            txtConfirmPassword.setText("");
+            txtUserType.setSelectedIndex(-1);
             
-        
+            txtUserName.requestFocus();
+            
+            
         
         
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
