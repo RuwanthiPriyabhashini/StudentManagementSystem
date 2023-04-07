@@ -152,37 +152,57 @@ public class NewUser extends javax.swing.JFrame {
         
         else{
             
-             String userName = txtUserName.getText();
-             String password = txtPassword.getText();
-             String userType = txtUserType.getSelectedItem().toString();
-             
-                     Connection connection = DBConnection.getInstance().getConnection();
-        
-            PreparedStatement prepareStatement = null;
             try {
-                prepareStatement = connection.prepareStatement("insert into user values(?,?,?,?)");
+
+                String userName = txtUserName.getText();
+                String password = txtPassword.getText();
+                String userType = txtUserType.getSelectedItem().toString();
+                
+                Connection connection = DBConnection.getInstance().getConnection();
+                
+                PreparedStatement prepareStatement = null;
+                try {
+                    prepareStatement = connection.prepareStatement("insert into user values(?,?,?,?)");
+                } catch (SQLException ex) {
+                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                prepareStatement.setObject(1,"003");
+                try {
+                    prepareStatement.setObject(2, userName);
+                } catch (SQLException ex) {
+                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    prepareStatement.setObject(3,password);
+                } catch (SQLException ex) {
+                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    prepareStatement.setObject(4, userType);
+                } catch (SQLException ex) {
+                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                prepareStatement.executeUpdate();
+                JOptionPane.showMessageDialog(null, "User Created......");
+                
+                txtUserName.setText("");
+                txtPassword.setText("");
+                txtConfirmPassword.setText("");
+                txtUserType.setSelectedIndex(-1);
+                
+                txtUserName.requestFocus();
+                
+                
+                
+                
+                
+                
+                
             } catch (SQLException ex) {
                 Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            try {
-                prepareStatement.setObject(2, userName);
-            } catch (SQLException ex) {
-                Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                prepareStatement.setObject(3,password);
-            } catch (SQLException ex) {
-                Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                prepareStatement.setObject(4, userType);
-            } catch (SQLException ex) {
-                Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            prepareStatement.executeUpdate();
-            JOptionPane.showMessageDialog(null, "User Created......");
             
             
         
