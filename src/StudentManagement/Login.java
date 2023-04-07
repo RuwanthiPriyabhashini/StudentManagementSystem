@@ -75,10 +75,12 @@ public class Login extends javax.swing.JFrame {
 
         jLabel4.setText("jLabel4");
 
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Login");
 
         btnCancle.setText("Cancle");
 
+        btnNewUser.setForeground(new java.awt.Color(255, 255, 255));
         btnNewUser.setText("New User");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
