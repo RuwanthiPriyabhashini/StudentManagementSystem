@@ -5,6 +5,13 @@
 package StudentManagement;
 
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -94,6 +101,11 @@ public class Login extends javax.swing.JFrame {
         btnNewUser.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnNewUser.setForeground(new java.awt.Color(255, 255, 255));
         btnNewUser.setText("New User");
+        btnNewUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewUserActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PasswordLayout = new javax.swing.GroupLayout(Password);
         Password.setLayout(PasswordLayout);
@@ -155,8 +167,38 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+
+        if(txtUserName.getText().isEmpty() || txtPassword.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this,"Usre Name or Password Blank!");
+        }
+        else{
+            try {
+                Connection connection = DBConnection.getInstance().getConnection();
+                PreparedStatement prepareStatement = connection.prepareStatement("select * from user where username =? and password =?");
+                
+                prepareStatement.setObject(1, txtUserName.getText());
+                prepareStatement.setObject(2, txtPassword.getText());
+                
+                ResultSet isExist = prepareStatement.executeQuery();
+                
+                if(isExist.next()){
+                Parent parent = 
+                }
+                
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+        }
+        
+
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnNewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNewUserActionPerformed
 
     /**
      * @param args the command line arguments

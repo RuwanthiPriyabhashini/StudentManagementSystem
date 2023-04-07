@@ -196,6 +196,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="New User"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNewUserActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
