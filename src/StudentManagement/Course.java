@@ -5,6 +5,12 @@
 package StudentManagement;
 
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -50,6 +56,11 @@ public class Course extends javax.swing.JFrame {
         btnCancle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnCancle.setForeground(new java.awt.Color(255, 255, 255));
         btnCancle.setText("Cancle");
+        btnCancle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancleActionPerformed(evt);
+            }
+        });
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
@@ -117,11 +128,61 @@ public class Course extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+        String batchName = txtBatchName.getText();
+        String year = txtYear.getText();
+        
+        if(batchName.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Please Enter the Batch Name!");
+        }
+        else if(year.isEmpty()){
+        JOptionPane.showMessageDialog(this,"Please Enter the Year!");
+        }
+        else{
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            PreparedStatement prepareStatement = connection.prepareStatement("insert into batch (batchname, year) values(?,?)");
+            
+            prepareStatement.setObject(1, batchName);
+            prepareStatement.setObject(2, year);
+            
+            int i = prepareStatement.executeUpdate();
+            
+            if(i != 0){
+            JOptionPane.showMessageDialog(this, "Record Added Successfully!");
+            
+            txtBatchName.setText("");
+            txtYear.setText("");
+            
+            txtBatchName.requestFocus();
+            }
+            else{
+            JOptionPane.showMessageDialog(this, "Something Wrong! Try Again..");
+            
+            txtBatchName.setText("");
+            txtYear.setText("");
+            
+            txtBatchName.requestFocus();
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Course.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        
+        
+        
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnCancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancleActionPerformed
+        txtBatchName.setText("");
+        txtYear.setText("");
+        
+        txtBatchName.requestFocus();
+    }//GEN-LAST:event_btnCancleActionPerformed
 
     /**
      * @param args the command line arguments
