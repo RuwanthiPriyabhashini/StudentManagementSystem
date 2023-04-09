@@ -379,6 +379,7 @@ public class Registration extends javax.swing.JFrame {
 
     private void btnCancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancleActionPerformed
         defaultForm();
+        dispose();
                         
     }//GEN-LAST:event_btnCancleActionPerformed
 

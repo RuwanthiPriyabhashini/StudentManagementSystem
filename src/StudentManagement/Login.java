@@ -97,6 +97,11 @@ public class Login extends javax.swing.JFrame {
         btnCancle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnCancle.setForeground(new java.awt.Color(255, 255, 255));
         btnCancle.setText("Cancle");
+        btnCancle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancleActionPerformed(evt);
+            }
+        });
 
         btnNewUser.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnNewUser.setForeground(new java.awt.Color(255, 255, 255));
@@ -130,7 +135,7 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
                         .addComponent(btnCancle, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         PasswordLayout.setVerticalGroup(
             PasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +161,9 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,12 +171,13 @@ public class Login extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
 
         if(txtUserName.getText().isEmpty() || txtPassword.getText().isEmpty()){
-        JOptionPane.showMessageDialog(this,"Usre Name or Password Blank!");
+        JOptionPane.showMessageDialog(this,"User Name or Password Blank!");
         }
         else{
             try {
@@ -207,8 +215,17 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnNewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewUserActionPerformed
-        // TODO add your handling code here:
+        NewUser n = new NewUser();
+        n.setVisible(true);
+        
     }//GEN-LAST:event_btnNewUserActionPerformed
+
+    private void btnCancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancleActionPerformed
+       txtUserName.setText("");
+       txtPassword.setText("");
+       
+       txtUserName.requestFocus();
+    }//GEN-LAST:event_btnCancleActionPerformed
 
     /**
      * @param args the command line arguments

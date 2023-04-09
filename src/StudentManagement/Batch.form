@@ -50,13 +50,9 @@
                               <Component id="jLabel2" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtCourseName" min="-2" pref="504" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="txtDuration" min="-2" pref="287" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                  <Component id="txtOption" min="-2" pref="116" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtBatchName" max="32767" attributes="0"/>
+                              <Component id="txtYear" pref="504" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -76,7 +72,7 @@
                   <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnBatchName" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
-                      <Component id="txtCourseName" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
+                      <Component id="txtBatchName" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -85,10 +81,7 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtDuration" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
-                              <Component id="txtOption" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="txtYear" min="-2" pref="57" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="97" max="32767" attributes="0"/>
@@ -107,7 +100,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Course Name"/>
+            <Property name="text" type="java.lang.String" value="Batch Name"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -115,15 +108,12 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Duration"/>
+            <Property name="text" type="java.lang.String" value="Year"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtCourseName">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCourseNameActionPerformed"/>
-          </Events>
+        <Component class="javax.swing.JTextField" name="txtBatchName">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtDuration">
+        <Component class="javax.swing.JTextField" name="txtYear">
         </Component>
         <Component class="javax.swing.JButton" name="btnCancle">
           <Properties>
@@ -152,23 +142,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="txtOption">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="1"/>
-            </Property>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="Week"/>
-                <StringItem index="1" value="Month"/>
-                <StringItem index="2" value="Year"/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

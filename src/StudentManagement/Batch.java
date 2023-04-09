@@ -16,12 +16,12 @@ import javax.swing.JOptionPane;
  *
  * @author DOWNLOAD
  */
-public class Course extends javax.swing.JFrame {
+public class Batch extends javax.swing.JFrame {
 
     /**
      * Creates new form Course
      */
-    public Course() {
+    public Batch() {
         initComponents();
         
         btnAdd.setBackground(Color.green);
@@ -40,25 +40,18 @@ public class Course extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnBatchName = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtCourseName = new javax.swing.JTextField();
-        txtDuration = new javax.swing.JTextField();
+        txtBatchName = new javax.swing.JTextField();
+        txtYear = new javax.swing.JTextField();
         btnCancle = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
-        txtOption = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnBatchName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnBatchName.setText("Course Name");
+        btnBatchName.setText("Batch Name");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Duration");
-
-        txtCourseName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCourseNameActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("Year");
 
         btnCancle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnCancle.setForeground(new java.awt.Color(255, 255, 255));
@@ -78,9 +71,6 @@ public class Course extends javax.swing.JFrame {
             }
         });
 
-        txtOption.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Week", "Month", "Year" }));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -93,12 +83,9 @@ public class Course extends javax.swing.JFrame {
                             .addComponent(btnBatchName, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(75, 75, 75)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCourseName, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(txtOption, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtBatchName)
+                            .addComponent(txtYear, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(305, 305, 305)
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -112,16 +99,14 @@ public class Course extends javax.swing.JFrame {
                 .addGap(133, 133, 133)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBatchName, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCourseName, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBatchName, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtOption, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancle, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,76 +132,59 @@ public class Course extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-       
-        String courseName = txtCourseName.getText();
-        String duration = txtDuration.getText();
-        String option = (String) txtOption.getSelectedItem();
+        String batchName = txtBatchName.getText();
+        String year = txtYear.getText();
         
-        if(courseName.isEmpty()){
-        JOptionPane.showMessageDialog(this, "Please Enter Course Name!");
+        if(batchName.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Please Enter the Batch Name!");
         }
-        
-        else if(duration.isEmpty()){
-        JOptionPane.showMessageDialog(this, "Please Enter Duration!");
+        else if(year.isEmpty()){
+        JOptionPane.showMessageDialog(this,"Please Enter the Year!");
         }
-        
-        else if(option.isEmpty()){
-        JOptionPane.showMessageDialog(this, "Please Select one option!");
-        }
-        
         else{
-            Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement prepareStatement;
-            try {
-                prepareStatement = connection.prepareStatement("insert into course (coursename,duration,optionn) values(?,?,?)");
-                
-                            prepareStatement.setObject(1, courseName);
-            prepareStatement.setObject(2, duration);
-            prepareStatement.setObject(3, option);
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            PreparedStatement prepareStatement = connection.prepareStatement("insert into batch (batchname, year) values(?,?)");
+            
+            prepareStatement.setObject(1, batchName);
+            prepareStatement.setObject(2, year);
             
             int i = prepareStatement.executeUpdate();
             
-            if(i !=0){
-            JOptionPane.showMessageDialog(this,"Record Added Successfully!");
+            if(i != 0){
+            JOptionPane.showMessageDialog(this, "Record Added Successfully!");
             
-             txtCourseName.setText("");
-            txtDuration.setText("");
-            txtOption.setSelectedIndex(0);
+            txtBatchName.setText("");
+            txtYear.setText("");
             
-            txtCourseName.requestFocus();
+            txtBatchName.requestFocus();
             }
             else{
-            JOptionPane.showMessageDialog(this, "Something Wrong!");
+            JOptionPane.showMessageDialog(this, "Something Wrong! Try Again..");
             
-            txtCourseName.setText("");
-            txtDuration.setText("");
-            txtOption.setSelectedIndex(0);
+            txtBatchName.setText("");
+            txtYear.setText("");
             
-            txtCourseName.requestFocus();
-            }
-            } catch (SQLException ex) {
-                Logger.getLogger(Course.class.getName()).log(Level.SEVERE, null, ex);
+            txtBatchName.requestFocus();
             }
             
-
-                    
+        } catch (SQLException ex) {
+            Logger.getLogger(Batch.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }
+        
         
         
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnCancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancleActionPerformed
-        txtCourseName.setText("");
-        txtDuration.setText("");
+        txtBatchName.setText("");
+        txtYear.setText("");
         
-        txtCourseName.requestFocus();
+        txtBatchName.requestFocus();
         
         dispose();
     }//GEN-LAST:event_btnCancleActionPerformed
-
-    private void txtCourseNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCourseNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCourseNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,23 +203,21 @@ public class Course extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Course.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Batch.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Course.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Batch.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Course.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Batch.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Course.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Batch.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Course().setVisible(true);
+                new Batch().setVisible(true);
             }
         });
     }
@@ -262,8 +228,7 @@ public class Course extends javax.swing.JFrame {
     private javax.swing.JButton btnCancle;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtCourseName;
-    private javax.swing.JTextField txtDuration;
-    private javax.swing.JComboBox<String> txtOption;
+    private javax.swing.JTextField txtBatchName;
+    private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables
 }
