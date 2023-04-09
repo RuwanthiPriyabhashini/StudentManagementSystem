@@ -263,11 +263,9 @@ public class Registration extends javax.swing.JFrame {
         public void gender(){
         if(btnMale.isSelected()){
             gender = "Male";
-        btnFemale.setEnabled(false);
         }
         else if(btnFemale.isSelected()){
             gender = "Female";
-        btnMale.setEnabled(false);
         
       }
         }
@@ -329,33 +327,27 @@ public class Registration extends javax.swing.JFrame {
         
         if(txtFirstName.getText().isEmpty()){
         JOptionPane.showMessageDialog(this, "Please Enter Your First Name!");
-        defaultForm();
         }
         else if(txtLastName.getText().isEmpty()){
         JOptionPane.showMessageDialog(this, "Please Enter Your Last Name!");
-        defaultForm();
         }
         else if(txtNic.getText().isEmpty()){
         JOptionPane.showMessageDialog(this, "Please Enter Your NIC number!");
-        defaultForm();
         }
         else if(!btnMale.isSelected() && !btnFemale.isSelected()){
         JOptionPane.showMessageDialog(this, "Please Enter Your Gender");
-        defaultForm();
         }
         else if(txtTelephone.getText().isEmpty()){
         JOptionPane.showMessageDialog(this, "Please Enter Your Telephone Number!");
-        defaultForm();
         }
         else if(txtAddress.getText().isEmpty()){
         JOptionPane.showMessageDialog(this, "Please Enter Your Address!");
-        defaultForm();
         }
         else{
             Connection connection = DBConnection.getInstance().getConnection();
             
             try {
-                PreparedStatement prepareStatement = connection.prepareStatement("insert into registration (firstname,lastname,nic,gender,course,batch,telephone,address) values(?,?,?,?,?,?,?,?))");
+                PreparedStatement prepareStatement = connection.prepareStatement("insert into registration(firstname, lastname, nic, gender, course, batch, telephone, address) values(?,?,?,?,?,?,?,?)");
                 
                 prepareStatement.setObject(1,txtFirstName.getText());
                 prepareStatement.setObject(2, txtLastName.getText());
