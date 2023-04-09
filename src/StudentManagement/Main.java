@@ -59,6 +59,11 @@ public class Main extends javax.swing.JFrame {
         btnRegistration.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnRegistration.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistration.setText("Registration");
+        btnRegistration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrationActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,15 +91,23 @@ public class Main extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatchActionPerformed
-        // TODO add your handling code here:
+        Batch b = new Batch();
+        b.setVisible(true);
     }//GEN-LAST:event_btnBatchActionPerformed
 
     private void btnCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourseActionPerformed
-        // TODO add your handling code here:
+        Course c = new Course();
+        c.setVisible(true);
     }//GEN-LAST:event_btnCourseActionPerformed
+
+    private void btnRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrationActionPerformed
+        Registration r = new Registration();
+        r.setVisible(true);
+    }//GEN-LAST:event_btnRegistrationActionPerformed
 
     /**
      * @param args the command line arguments
